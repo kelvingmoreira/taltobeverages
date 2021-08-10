@@ -18,7 +18,7 @@ namespace Talto.Repository
         Task<IEnumerable<T>> GetAsync();
 
         /// <summary>
-        /// Busca e retorna a entidade com o ID dado <typeparamref name="T"/>.
+        /// Busca e retorna a entidade <typeparamref name="T"/> com o ID dado.
         /// </summary>
         /// <param name="id">O ID da entidade a buscar.</param>
         /// <returns>
