@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Talto.Models", "Talto.Models\Talto.Models.csproj", "{F49BF183-FD25-4D14-A4F7-5F6D43CE595D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Talto.WebApi", "Talto.WebApi\Talto.WebApi.csproj", "{5C57AFA1-E062-49BE-B4D7-90379F1443E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talto.Repository", "Talto.Repository\Talto.Repository.csproj", "{241BA139-0480-43F7-8736-88AB607DDE89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Talto.Repository", "Talto.Repository\Talto.Repository.csproj", "{27B591BE-35FF-4F43-8A3E-6F78FFC3C175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F49BF183-FD25-4D14-A4F7-5F6D43CE595D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F49BF183-FD25-4D14-A4F7-5F6D43CE595D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F49BF183-FD25-4D14-A4F7-5F6D43CE595D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F49BF183-FD25-4D14-A4F7-5F6D43CE595D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{241BA139-0480-43F7-8736-88AB607DDE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{241BA139-0480-43F7-8736-88AB607DDE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{241BA139-0480-43F7-8736-88AB607DDE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{241BA139-0480-43F7-8736-88AB607DDE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C57AFA1-E062-49BE-B4D7-90379F1443E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C57AFA1-E062-49BE-B4D7-90379F1443E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C57AFA1-E062-49BE-B4D7-90379F1443E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C57AFA1-E062-49BE-B4D7-90379F1443E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B591BE-35FF-4F43-8A3E-6F78FFC3C175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B591BE-35FF-4F43-8A3E-6F78FFC3C175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B591BE-35FF-4F43-8A3E-6F78FFC3C175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B591BE-35FF-4F43-8A3E-6F78FFC3C175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

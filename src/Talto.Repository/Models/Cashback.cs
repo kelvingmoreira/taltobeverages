@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Talto.Repository.Models.Helpers;
 
-namespace Talto.Models
+namespace Talto.Repository.Models
 {
-    public class Cashback
+    public class Cashback : Traceable
     {
         public DayOfWeek DayOfWeek { get; set; }
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Talto.Repository.Models.Helpers;
 
-namespace Talto.Models
+namespace Talto.Repository.Models
 {
-    public class Beverage
+    public class Beverage : DbObject
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Cashback> Cashbacks { get; set; }
     }
