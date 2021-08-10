@@ -28,7 +28,7 @@ namespace Talto.Repository
         Task<T> GetAsync(int id);
 
         /// <summary>
-        /// Cria uma nova entidade de <typeparamref name="T"/> no banco de dados.
+        /// Cria uma nova tupla de <typeparamref name="T"/> no banco de dados.
         /// </summary>
         /// <param name="entity">A entidade a criar.</param>
         /// <returns>
@@ -37,7 +37,7 @@ namespace Talto.Repository
         Task<T> InsertAsync(T entity);
 
         /// <summary>
-        /// Cria uma nova entidade de <typeparamref name="T"/> no banco de dados.
+        /// Atualiza os atributos de uma tupla de <typeparamref name="T"/> no banco de dados.
         /// </summary>
         /// <param name="entity">A entidade a criar.</param>
         /// <returns>
@@ -46,7 +46,7 @@ namespace Talto.Repository
         Task<T> UpdateAsync(T entity);
 
         /// <summary>
-        /// Remove a entidade <typeparamref name="T"/> no banco de dados com o ID dado.
+        /// Remove a tupla da entidade <typeparamref name="T"/> no banco de dados com o ID dado.
         /// </summary>
         /// <param name="id">O ID da entidade a remover.</param>
         Task DeleteAsync(int id);
