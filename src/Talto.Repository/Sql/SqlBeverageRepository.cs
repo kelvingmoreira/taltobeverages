@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Talto.Repository.Models;
+using Talto.Repository.Models.Helpers;
 
 namespace Talto.Repository.Sql
 {
@@ -28,6 +29,8 @@ namespace Talto.Repository.Sql
 
         public async Task<Beverage> InsertAsync(Beverage entity)
         {
+            entity.SetTraceValues();
+
             _db.Entry(entity).State = EntityState.Added;
 
             await _db.SaveChangesAsync();
@@ -36,6 +39,8 @@ namespace Talto.Repository.Sql
 
         public async Task<Beverage> UpdateAsync(Beverage entity)
         {
+            entity.SetTraceValues();
+
             var tracked = await _db.Beverages
                 .FirstOrDefaultAsync(e => e.Id == entity.Id);
 

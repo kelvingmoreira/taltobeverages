@@ -16,6 +16,14 @@ namespace Talto.Repository.Sql
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Beverage>()
+                .HasMany(x => x.Cashbacks)
+                .WithOne(x => x.Beverage)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Cashback>()
+                .HasKey(c => new { c.BeverageId, c.DayOfWeek });
         }
 
         public virtual DbSet<Beverage> Beverages { get; set; }

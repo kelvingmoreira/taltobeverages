@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Talto.Repository.Sql;
+using Talto.Repository;
 
 namespace Talto.WebApi
 {
@@ -36,8 +37,12 @@ namespace Talto.WebApi
                 {
                     db.EnableSensitiveDataLogging()
                     .UseLoggerFactory((ILoggerFactory)provider.GetService(typeof(ILoggerFactory)));
+
                 }
             });
+
+            //injeção de dependência
+            services.AddScoped<IBeverageRepository, SqlBeverageRepository>();
 
             services.AddControllers();
 
@@ -63,6 +68,10 @@ namespace Talto.WebApi
                     setup.DefaultModelsExpandDepth(-1);
                 });
             }
+
+            using (var scope = app.ApplicationServices.CreateScope())
+                using (var context = scope.ServiceProvider.GetService<TaltoContext>())
+                    context.Database.EnsureCreated();
 
             app.UseHttpsRedirection();
 

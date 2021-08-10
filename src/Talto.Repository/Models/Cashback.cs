@@ -10,11 +10,11 @@ namespace Talto.Repository.Models
 {
     public class Cashback : Traceable
     {
-        public DayOfWeek DayOfWeek { get; set; }
-
         public int BeverageId { get; set; }
 
         public Beverage Beverage { get; set; }
+
+        public DayOfWeek DayOfWeek { get; set; }
 
         private double _value;
 
