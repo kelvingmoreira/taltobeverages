@@ -8,8 +8,4 @@
     <ProjectReference Include="..\Talto.Models\Talto.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Sql\" />
-  </ItemGroup>
-
 </Project>
