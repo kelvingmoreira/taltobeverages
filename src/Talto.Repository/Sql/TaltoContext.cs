@@ -5,7 +5,15 @@ namespace Talto.Repository.Sql
 {
     public class TaltoContext : DbContext
     {
+        /// <summary>
+        /// Cria um novo <see cref="DbContext"/> de <see cref="TaltoContext"/>.
+        /// </summary>
         public TaltoContext() { }
+
+        /// <summary>
+        /// Cria um novo <see cref="DbContext"/> de <see cref="TaltoContext"/> com opções personalizadas.
+        /// </summary>
+        /// <param name="options">As opções do <see cref="DbContext"/>.</param>
         public TaltoContext(DbContextOptions<TaltoContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

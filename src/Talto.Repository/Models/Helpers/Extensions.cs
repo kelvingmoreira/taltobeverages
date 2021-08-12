@@ -2,6 +2,9 @@
 
 namespace Talto.Repository.Models.Helpers
 {
+    /// <summary>
+    /// Classe auxiliar para extensões.
+    /// </summary>
     public static class Extensions
     {
         /// <summary>

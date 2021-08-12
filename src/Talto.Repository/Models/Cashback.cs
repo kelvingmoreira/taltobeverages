@@ -14,12 +14,12 @@ namespace Talto.Repository.Models
         public int BeverageId { get; set; }
 
         /// <summary>
-        /// Obtem ou define a cerveja à qual o cashback descreve.
+        /// Obtém ou define a cerveja à qual o cashback descreve.
         /// </summary>
         public Beverage Beverage { get; set; }
 
         /// <summary>
-        /// Obtem ou define o dia da semana em que o cashback se aplica.
+        /// Obtém ou define o dia da semana em que o cashback se aplica.
         /// </summary>
         public DayOfWeek DayOfWeek { get; set; }
 

@@ -15,6 +15,10 @@ namespace Talto.Repository.Sql
     {
         private readonly TaltoContext _db;
 
+        /// <summary>
+        /// Cria uma nova instância de <see cref="SqlOrderRepository"/>
+        /// </summary>
+        /// <param name="db">O contexto do banco de dados.</param>
         public SqlOrderRepository(TaltoContext db) => _db = db;
 
         public IQueryable<Order> AsQueryable() => _db.Orders;
