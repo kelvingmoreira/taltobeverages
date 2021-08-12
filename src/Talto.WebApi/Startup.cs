@@ -22,21 +22,20 @@ namespace Talto.WebApi
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
-            Enviroment = environment;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
-        public IWebHostEnvironment Enviroment { get; }
+        public IWebHostEnvironment Environment { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TaltoContext>((provider, option) => {
                 var db = option.UseSqlServer(Configuration.GetConnectionString("ReleaseConnection"), o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
-                if (Enviroment.IsDevelopment())
+                if (Environment.IsDevelopment())
                 {
                     db.EnableSensitiveDataLogging()
-                    .UseLoggerFactory((ILoggerFactory)provider.GetService(typeof(ILoggerFactory)));
+                    .UseLoggerFactory(provider.GetService<ILoggerFactory>());
 
                 }
             });
@@ -55,9 +54,14 @@ namespace Talto.WebApi
             services.AddSwaggerGenNewtonsoftSupport();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Verifica se a connection está definida. 
+            //Se não estiver, defina o valor de ReleaseConnection em appsettings.Development.json para a demonstração
+            if (string.IsNullOrWhiteSpace(Configuration.GetConnectionString("ReleaseConnection")))
+                throw new NullReferenceException("É necessário definir a connection string do banco de dados");
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,6 +73,7 @@ namespace Talto.WebApi
                 });
             }
 
+            //Certifica que o banco de dados existe. Se não exisitr, o schema será aplicado no caminho da connection string.
             using (var scope = app.ApplicationServices.CreateScope())
                 using (var context = scope.ServiceProvider.GetService<TaltoContext>())
                     context.Database.EnsureCreated();
