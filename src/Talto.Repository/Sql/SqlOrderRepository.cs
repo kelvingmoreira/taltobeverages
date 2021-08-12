@@ -23,12 +23,14 @@ namespace Talto.Repository.Sql
         public async Task<IEnumerable<Order>> GetAsync() =>
             await _db.Orders
             .Include(e => e.Entries)
+            .ThenInclude(o => o.Beverage)
             .AsNoTracking()
             .ToListAsync();
 
         public async Task<Order> GetAsync(int id) =>
             await _db.Orders
             .Include(e => e.Entries)
+            .ThenInclude(o => o.Beverage)
             .AsNoTracking()
             .FirstOrDefaultAsync(e => e.Id == id);
 

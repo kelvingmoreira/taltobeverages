@@ -49,20 +49,20 @@ namespace Talto.Repository.Models
             }
         }
 
-        private double _cashbackAtSale;
+        private double _cashbackRefunded;
 
         /// <summary>
-        /// Obtém ou define o valor de cashback do lançamento no momento da venda.
+        /// Obtém ou define o valor de cashback devolvido no momento da venda.
         /// </summary>
-        public double CashbackAtSale
+        public double CashbackRefunded
         {
-            get => _cashbackAtSale;
+            get => _cashbackRefunded;
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(CashbackAtSale));
+                    throw new ArgumentOutOfRangeException(nameof(CashbackRefunded));
                 else
-                    _cashbackAtSale = value;
+                    _cashbackRefunded = value;
             }
         }
     }

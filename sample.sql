@@ -54,11 +54,11 @@ GO
 --Samples de ordens
 SET IDENTITY_INSERT [Orders] ON 
 
-INSERT INTO Orders ([Id], [DatePlaced], [TotalCashback], [CreationDate], [LastWriteDate]) VALUES (1, '2021-01-07T00:00:00.00', 0, GETDATE(), GETDATE())
-INSERT INTO Orders ([Id], [DatePlaced], [TotalCashback], [CreationDate], [LastWriteDate]) VALUES (2, '2021-02-09T00:00:00.00', 0, GETDATE(), GETDATE())
-INSERT INTO Orders ([Id], [DatePlaced], [TotalCashback], [CreationDate], [LastWriteDate]) VALUES (3, '2021-03-02T00:00:00.00', 0, GETDATE(), GETDATE())
-INSERT INTO Orders ([Id], [DatePlaced], [TotalCashback], [CreationDate], [LastWriteDate]) VALUES (4, '2021-04-21T00:00:00.00', 0, GETDATE(), GETDATE())
-INSERT INTO Orders ([Id], [DatePlaced], [TotalCashback], [CreationDate], [LastWriteDate]) VALUES (5, '2021-05-29T00:00:00.00', 0, GETDATE(), GETDATE())
+INSERT INTO Orders ([Id], [DatePlaced], [TotalCashbackRefunded], [CreationDate], [LastWriteDate]) VALUES (1, '2021-01-07T00:00:00.00', 0, GETDATE(), GETDATE())
+INSERT INTO Orders ([Id], [DatePlaced], [TotalCashbackRefunded], [CreationDate], [LastWriteDate]) VALUES (2, '2021-02-09T00:00:00.00', 0, GETDATE(), GETDATE())
+INSERT INTO Orders ([Id], [DatePlaced], [TotalCashbackRefunded], [CreationDate], [LastWriteDate]) VALUES (3, '2021-03-02T00:00:00.00', 0, GETDATE(), GETDATE())
+INSERT INTO Orders ([Id], [DatePlaced], [TotalCashbackRefunded], [CreationDate], [LastWriteDate]) VALUES (4, '2021-04-21T00:00:00.00', 0, GETDATE(), GETDATE())
+INSERT INTO Orders ([Id], [DatePlaced], [TotalCashbackRefunded], [CreationDate], [LastWriteDate]) VALUES (5, '2021-05-29T00:00:00.00', 0, GETDATE(), GETDATE())
 
 SET IDENTITY_INSERT [Orders] OFF
 
@@ -66,22 +66,22 @@ GO
 
 --Samples de lançamentos
 
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (1, 1, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (1, 2, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (1, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (1, 1, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (1, 2, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (1, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
 
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (2, 2, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (2, 3, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (2, 2, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (2, 3, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
 
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 1, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 2, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 3, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 1, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 2, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 3, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (3, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
 
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (4, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (4, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
 
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (5, 1, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
-INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackAtSale], [Quantity], [CreationDate], [LastWriteDate]) VALUES (5, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (5, 1, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
+INSERT INTO OrderEntries ([OrderId], [BeverageId], [CashbackRefunded], [Quantity], [CreationDate], [LastWriteDate]) VALUES (5, 4, 0, FLOOR(RAND() * 100) + 1, GETDATE(), GETDATE())
 
 GO
 
@@ -89,17 +89,17 @@ MERGE INTO OrderEntries [oe]
    USING (SELECT 
 	oe.Id,
 	oe.Quantity,
-	ROUND((SELECT [Value] FROM Cashbacks WHERE [DayOfWeek] =  DATEPART(weekday, o.DatePlaced) - 1 AND BeverageId = oe.[BeverageId] )  * oe.Quantity * b.Price, 2) [CashbackAtSale]
+	ROUND((SELECT [Value] FROM Cashbacks WHERE [DayOfWeek] =  DATEPART(weekday, o.DatePlaced) - 1 AND BeverageId = oe.[BeverageId] )  * oe.Quantity * b.Price, 2) [CashbackRefunded]
 	FROM OrderEntries [oe]
 	LEFT JOIN Orders [o] on [oe].OrderId = o.Id
 	LEFT JOIN Beverages [b] on [oe].BeverageId = b.Id
 	) [nv] 
 ON [oe].Id = [nv].Id
 WHEN MATCHED THEN
-UPDATE SET [oe].[CashbackAtSale] = nv.CashbackAtSale;
+UPDATE SET [oe].[CashbackRefunded] = nv.CashbackRefunded;
 
 MERGE INTO Orders [o]
-   USING (SELECT OrderId, SUM([CashbackAtSale]) [TotalCashback] From OrderEntries GROUP BY OrderId) [nv] 
+   USING (SELECT OrderId, SUM([CashbackRefunded]) [TotalCashbackRefunded] From OrderEntries GROUP BY OrderId) [nv] 
 ON [o].Id = [nv].OrderId
 WHEN MATCHED THEN
-UPDATE SET [o].[TotalCashback] = nv.[TotalCashback];
+UPDATE SET [o].[TotalCashbackRefunded] = nv.[TotalCashbackRefunded];

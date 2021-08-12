@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Talto.WebApi.ViewModels
 {
-    public class BeverageDto
+    public class BeverageResponse
     {
-        public BeverageDto() { }
-        public BeverageDto(int id, string name, double price, IEnumerable<CashbackDto> cashbacks)
+        public BeverageResponse() { }
+        public BeverageResponse(int id, string name, double price, IEnumerable<CashbackResponse> cashbacks)
         {
             Id = id;
             Name = name;

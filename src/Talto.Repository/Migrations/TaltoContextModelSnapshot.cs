@@ -81,7 +81,7 @@ namespace Talto.Repository.Migrations
                     b.Property<DateTime?>("LastWriteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("TotalCashback")
+                    b.Property<double>("TotalCashbackRefunded")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -99,7 +99,7 @@ namespace Talto.Repository.Migrations
                     b.Property<int>("BeverageId")
                         .HasColumnType("int");
 
-                    b.Property<double>("CashbackAtSale")
+                    b.Property<double>("CashbackRefunded")
                         .HasColumnType("float");
 
                     b.Property<DateTime?>("CreationDate")

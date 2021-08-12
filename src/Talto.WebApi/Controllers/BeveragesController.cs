@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Talto.Repository;
-using Talto.Repository.Models;
 using Talto.WebApi.Pagination;
 using Talto.WebApi.ViewModels;
 
@@ -17,6 +15,10 @@ namespace Talto.WebApi.Controllers
     {
         private readonly IBeverageRepository _repository;
 
+        /// <summary>
+        /// Inicia uma nova instância de <see cref="BeveragesController"/> com injeção de dependência.
+        /// </summary>
+        /// <param name="repository">A injeção de <see cref="IBeverageRepository"/>.</param>
         public BeveragesController(IBeverageRepository repository) => _repository = repository;
 
         /// <summary>
@@ -38,16 +40,19 @@ namespace Talto.WebApi.Controllers
                     .OrderBy(x => x.Name)
                     .Skip((pageFilter.PageNumber - 1) * pageFilter.PageSize)
                     .Take(pageFilter.PageSize)
+                    //Garante que apenas os dados necessários serão coletados na consulta ao SQL
+                    .Select(o => new { o.Id, o.Name, o.Price, o.Cashbacks })
                     .AsNoTracking()
                     .ToListAsync();
 
                 var totalRecords = await _repository.AsQueryable().CountAsync();
 
+                //TO DO: Revisar a maneira como o Price é injetado no JSON (deveria ser um cálculo).
                 var beverages = results
-                    .Select(o => new BeverageDto(o.Id, o.Name, o.Price, o.Cashbacks.Select(c => new CashbackDto(c.Beverage.Name, c.DayOfWeek, c.Value))));
+                    .Select(o => new BeverageResponse(o.Id, o.Name, o.Price, o.Cashbacks.Select(c => new CashbackResponse(c.Beverage.Name, c.DayOfWeek, c.Value))));
 
 
-                return Ok(new PagedResponse<IEnumerable<BeverageDto>>(beverages, pageFilter, totalRecords));
+                return Ok(new PagedResponse<IEnumerable<BeverageResponse>>(beverages, pageFilter, totalRecords));
             }
             catch
             {
@@ -74,9 +79,9 @@ namespace Talto.WebApi.Controllers
                 if (result == null)
                     return NotFound();
 
-                var dto = new BeverageDto(result.Id, result.Name, result.Price, result.Cashbacks.Select(c => new CashbackDto(c.Beverage.Name, c.DayOfWeek, c.Value)));
+                var response = new BeverageResponse(result.Id, result.Name, result.Price, result.Cashbacks.Select(c => new CashbackResponse(c.Beverage.Name, c.DayOfWeek, c.Value)));
 
-                return Ok(dto);
+                return Ok(response);
             }
             catch
             {

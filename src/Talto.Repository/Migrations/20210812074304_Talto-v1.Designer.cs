@@ -10,7 +10,7 @@ using Talto.Repository.Sql;
 namespace Talto.Repository.Migrations
 {
     [DbContext(typeof(TaltoContext))]
-    [Migration("20210812044840_Talto-v1")]
+    [Migration("20210812074304_Talto-v1")]
     partial class Taltov1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,7 +83,7 @@ namespace Talto.Repository.Migrations
                     b.Property<DateTime?>("LastWriteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("TotalCashback")
+                    b.Property<double>("TotalCashbackRefunded")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -101,7 +101,7 @@ namespace Talto.Repository.Migrations
                     b.Property<int>("BeverageId")
                         .HasColumnType("int");
 
-                    b.Property<double>("CashbackAtSale")
+                    b.Property<double>("CashbackRefunded")
                         .HasColumnType("float");
 
                     b.Property<DateTime?>("CreationDate")

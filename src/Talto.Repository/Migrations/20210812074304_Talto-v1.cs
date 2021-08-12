@@ -30,7 +30,7 @@ namespace Talto.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DatePlaced = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalCashback = table.Column<double>(type: "float", nullable: false),
+                    TotalCashbackRefunded = table.Column<double>(type: "float", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastWriteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -69,7 +69,7 @@ namespace Talto.Repository.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     BeverageId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    CashbackAtSale = table.Column<double>(type: "float", nullable: false),
+                    CashbackRefunded = table.Column<double>(type: "float", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastWriteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

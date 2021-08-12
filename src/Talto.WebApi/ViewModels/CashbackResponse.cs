@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Talto.WebApi.ViewModels
 {
-    public class CashbackDto
+    public class CashbackResponse
     {
-        public CashbackDto() { }
+        public CashbackResponse() { }
 
-        public CashbackDto(string beverage, DayOfWeek dayOfWeek, double value)
+        public CashbackResponse(string beverage, DayOfWeek dayOfWeek, double value)
         {
             Beverage = beverage;
             DayOfWeek = dayOfWeek.ToString().ToLower();
