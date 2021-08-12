@@ -20,7 +20,7 @@ namespace Talto.Repository.Models
         private double _totalCashbackRefunded;
 
         /// <summary>
-        /// Obtém ou define o cashback total devoldido na venda.
+        /// Obtém ou define o cashback total devolvido na venda.
         /// </summary>
         public double TotalCashbackRefunded
         {
@@ -33,6 +33,16 @@ namespace Talto.Repository.Models
                     _totalCashbackRefunded = value;
             }
         }
+
+        /// <summary>
+        /// Obtém o subtotal da venda.
+        /// </summary>
+        public double Subtotal => Entries.Sum(o => o.SalePrice * o.Quantity);
+
+        /// <summary>
+        /// Obtém o valor total da venda, deduzindo o cashback.
+        /// </summary>
+        public double GrandTotal => Subtotal - TotalCashbackRefunded;
 
         /// <summary>
         /// Obtém ou define os lançamentos da venda.

@@ -114,6 +114,9 @@ namespace Talto.Repository.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<double>("SalePrice")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BeverageId");

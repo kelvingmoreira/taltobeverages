@@ -68,6 +68,7 @@ namespace Talto.Repository.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     BeverageId = table.Column<int>(type: "int", nullable: false),
+                    SalePrice = table.Column<double>(type: "float", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     CashbackRefunded = table.Column<double>(type: "float", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),

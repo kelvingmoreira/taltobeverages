@@ -13,7 +13,7 @@ namespace Talto.Repository.Models
     public class OrderEntry : DbObject
     {
         /// <summary>
-        /// Obtém ou define o ID da cerveja.
+        /// Obtém ou define o ID da ordem.
         /// </summary>
         public int OrderId { get; set; }
 
@@ -31,6 +31,11 @@ namespace Talto.Repository.Models
         /// Obtém ou define a cerveja a vender.
         /// </summary>
         public Beverage Beverage { get; set; }
+
+        /// <summary>
+        /// Obtém ou define o valor pago por unidade de cerveja no momento da venda.
+        /// </summary>
+        public double SalePrice { get; set; }
 
         private int _quantity = 1;
 
@@ -65,5 +70,7 @@ namespace Talto.Repository.Models
                     _cashbackRefunded = value;
             }
         }
+
+
     }
 }
