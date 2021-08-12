@@ -27,12 +27,12 @@ namespace Talto.WebApi.Controllers
         public OrdersController(IOrderRepository repository) => _repository = repository;
 
         /// <summary>
-        /// Método GET que retorna as ordens de venda de forma paginada, filtrando opcionalmente por data, em ordem decrescente.
+        /// Método GET que retorna as ordens de venda de forma paginada, filtrando opcionalmente por data e hora, em ordem decrescente.
         /// </summary>
         /// <param name="pageNumber">O número da página.</param>
         /// <param name="pageSize">O tamanho da página.</param>
-        /// <param name="startDate">A data de início a filtrar.</param>
-        /// <param name="endDate">A data de término a filtrar.</param>
+        /// <param name="startDate">A data e hora de início a filtrar.</param>
+        /// <param name="endDate">A data e hora de término a filtrar.</param>
         /// <returns>A lista de ordens paginada em orderm decrescente, filtrada por data.</returns>
         [HttpGet]
         public async Task<IActionResult> Get(int? pageNumber, int? pageSize, DateTime? startDate, DateTime? endDate)
@@ -107,7 +107,7 @@ namespace Talto.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método POST que cria uma nova instância de <see cref="Order"/> no banco de dados.
+        /// Método POST que cria uma nova ordem de venda com seus lançamentos no banco de dados.
         /// </summary>
         /// <param name="orderRequest">A ordem a criar.</param>
         /// <returns>A ordem criada.</returns>

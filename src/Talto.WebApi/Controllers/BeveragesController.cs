@@ -52,7 +52,7 @@ namespace Talto.WebApi.Controllers
 
                 //TO DO: Revisar a maneira como o Price é injetado no JSON (deveria ser um cálculo).
                 var beverages = results
-                    .Select(o => new BeverageResponse(o.Id, o.Name, o.Price, o.Cashbacks.Select(c => new CashbackResponse(c.Beverage.Name, c.DayOfWeek, c.Value))));
+                    .Select(o => new BeverageResponse(o.Id, o.Name, o.Price, o.Cashbacks.Select(c => new CashbackResponse(c.DayOfWeek, c.Value))));
 
 
                 return Ok(new PagedResponse<IEnumerable<BeverageResponse>>(beverages, pageFilter, totalRecords));
@@ -82,7 +82,7 @@ namespace Talto.WebApi.Controllers
                 if (result == null)
                     return NotFound();
 
-                var response = new BeverageResponse(result.Id, result.Name, result.Price, result.Cashbacks.Select(c => new CashbackResponse(c.Beverage.Name, c.DayOfWeek, c.Value)));
+                var response = new BeverageResponse(result.Id, result.Name, result.Price, result.Cashbacks.Select(c => new CashbackResponse(c.DayOfWeek, c.Value)));
 
                 return Ok(response);
             }

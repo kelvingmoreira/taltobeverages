@@ -9,13 +9,12 @@ namespace Talto.WebApi.ViewModels
     {
         public CashbackResponse() { }
 
-        public CashbackResponse(string beverage, DayOfWeek dayOfWeek, double value)
+        public CashbackResponse(DayOfWeek dayOfWeek, double value)
         {
-            Beverage = beverage;
             DayOfWeek = dayOfWeek.ToString().ToLower();
             Value = value;
         }
-        public string Beverage { get; set; }
+
         public string DayOfWeek { get; set; }
 
         public double Value { get; set; }
