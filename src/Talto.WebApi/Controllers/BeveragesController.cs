@@ -50,7 +50,6 @@ namespace Talto.WebApi.Controllers
 
                 var totalRecords = await _repository.AsQueryable().CountAsync();
 
-                //TO DO: Revisar a maneira como o Price é injetado no JSON (deveria ser um cálculo).
                 var beverages = results
                     .Select(o => new BeverageResponse(o.Id, o.Name, o.Price, o.Cashbacks.Select(c => new CashbackResponse(c.DayOfWeek, c.Value))));
 
