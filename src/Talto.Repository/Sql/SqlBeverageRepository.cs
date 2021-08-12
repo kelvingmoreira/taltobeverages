@@ -36,6 +36,9 @@ namespace Talto.Repository.Sql
         {
             entity.SetTraceValues();
 
+            foreach (Cashback cashback in entity.Cashbacks) 
+                cashback.SetTraceValues();
+
             _db.Entry(entity).State = EntityState.Added;
 
             await _db.SaveChangesAsync();
@@ -44,19 +47,7 @@ namespace Talto.Repository.Sql
 
         public async Task<Beverage> UpdateAsync(Beverage entity)
         {
-            entity.SetTraceValues();
-
-            var existing = await _db.Beverages.FirstOrDefaultAsync(_beverage => _beverage.Id == entity.Id);
-
-            if (existing != null)
-            {
-                _db.Entry(existing).CurrentValues.SetValues(entity);
-                await _db.SaveChangesAsync();
-
-                return existing;
-            }
-
-            else return null;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> DeleteAsync(int id)

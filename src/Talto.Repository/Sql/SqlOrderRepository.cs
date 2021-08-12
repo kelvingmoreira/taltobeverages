@@ -38,6 +38,24 @@ namespace Talto.Repository.Sql
         {
             entity.SetTraceValues();
 
+            double totalCashbackRefunded = 0;
+            foreach(OrderEntry entry in entity.Entries)
+            {
+                entry.SetTraceValues();
+
+                //Busca a cerveja de forma rastreada
+                Beverage beverage = await _db.Beverages
+                    .Include(e => e.Cashbacks)
+                    .FirstOrDefaultAsync(e => e.Id == entry.BeverageId);
+
+                entry.SalePrice = beverage.Price;
+                entry.CashbackRefunded = beverage.Cashbacks.First(o => o.DayOfWeek == entity.DatePlaced.DayOfWeek).Value * entry.SalePrice * entry.Quantity;
+
+                totalCashbackRefunded += entry.CashbackRefunded;
+            }
+
+            entity.TotalCashbackRefunded = totalCashbackRefunded;
+
             _db.Orders.Add(entity);
 
             await _db.SaveChangesAsync();
@@ -47,18 +65,7 @@ namespace Talto.Repository.Sql
 
         public async Task<Order> UpdateAsync(Order entity)
         {
-            entity.SetTraceValues();
-
-            var existing = await _db.Orders.FirstOrDefaultAsync(_order => _order.Id == entity.Id);
-
-            if (existing != null)
-            {
-                _db.Entry(existing).CurrentValues.SetValues(entity);
-                await _db.SaveChangesAsync();
-
-                return existing;
-            }
-            else return null;
+            throw new NotImplementedException();
         }
 
         public async Task<bool> DeleteAsync(int id)

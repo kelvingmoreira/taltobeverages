@@ -8,13 +8,13 @@ namespace Talto.Repository.Models.Helpers
     public abstract class Traceable
     {
         /// <summary>
-        /// A data de criação da entidade.
+        /// Obtém a data de criação da entidade.
         /// </summary>
-        public DateTime? CreationDate { get; set; }
+        public DateTime? CreationDate { get; internal set; }
 
         /// <summary>
-        /// A data da última alteração na entidade.
+        /// Obtém a última alteração na entidade.
         /// </summary>
-        public DateTime? LastWriteDate { get; set; }
+        public DateTime? LastWriteDate { get; internal set; }
     }
 }

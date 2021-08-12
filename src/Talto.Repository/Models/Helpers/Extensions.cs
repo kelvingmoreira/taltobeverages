@@ -8,12 +8,12 @@ namespace Talto.Repository.Models.Helpers
 {
     public static class Extensions
     {
-        public static void SetTraceValues(this DbObject dbObject)
+        public static void SetTraceValues(this Traceable traceable)
         {
-            dbObject.LastWriteDate = DateTime.Now;
+            traceable.LastWriteDate = DateTime.Now;
 
-            if (!dbObject.CreationDate.HasValue) 
-                dbObject.CreationDate = dbObject.LastWriteDate;
+            if (!traceable.CreationDate.HasValue) 
+                traceable.CreationDate = traceable.LastWriteDate;
         }
     }
 }

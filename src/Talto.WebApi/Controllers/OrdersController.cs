@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Talto.Repository;
+using Talto.Repository.Models;
 using Talto.WebApi.Pagination;
 using Talto.WebApi.ViewModels;
 
 namespace Talto.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller com métodos de interação com as ordens de venda.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : Controller
@@ -22,6 +26,14 @@ namespace Talto.WebApi.Controllers
         /// <param name="repository">A injeção de  de <see cref="IOrderRepository"/>.</param>
         public OrdersController(IOrderRepository repository) => _repository = repository;
 
+        /// <summary>
+        /// Método GET que retorna as ordens de venda de forma paginada, filtrando opcionalmente por data, em ordem decrescente.
+        /// </summary>
+        /// <param name="pageNumber">O número da página.</param>
+        /// <param name="pageSize">O tamanho da página.</param>
+        /// <param name="startDate">A data de início a filtrar.</param>
+        /// <param name="endDate">A data de término a filtrar.</param>
+        /// <returns>A lista de ordens paginada em orderm decrescente, filtrada por data.</returns>
         [HttpGet]
         public async Task<IActionResult> Get(int? pageNumber, int? pageSize, DateTime? startDate, DateTime? endDate)
         {
@@ -57,12 +69,75 @@ namespace Talto.WebApi.Controllers
 
                 return Ok(new PagedResponse<IEnumerable<OrderResponse>>(orders, pageFilter, totalRecords));
             }
-            catch (Exception ex)
+            catch
             {
                 //retorna o erro 500 Internal Server Error
                 return StatusCode(500);
             }
 
+        }
+
+        /// <summary>
+        /// Método GET que retorna a ordem com o ID fornecido.
+        /// </summary>
+        /// <param name="id">O ID da ordem a buscar.</param>
+        /// <returns>
+        /// A ordem cujo ID é o fornecido. 
+        /// Retorna <see langword="null"/> se nenhuma ordem for encontrada com o ID fornecido.
+        /// </returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                var result = await _repository.GetAsync(id);
+                if (result == null)
+                    return NotFound();
+
+                var response = new OrderResponse(result.Id, result.DatePlaced,
+                            result.Entries.Select(e => new OrderEntryResponse(e.BeverageId, e.Beverage.Name, e.Beverage.Price, e.Quantity, e.CashbackRefunded)), result.TotalCashbackRefunded);
+
+                return Ok(response);
+            }
+            catch
+            {
+                //retorna o erro 500 Internal Server Error
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] OrderRequest orderRequest)
+        {
+            try
+            {
+                //Validação básica pra evitar ida ao banco de dados.
+                if (orderRequest.Entries.Count == 0 || orderRequest.Entries.Any(o => o.BeverageId < 0)) return BadRequest();
+
+                Order newOrder = new Order
+                {
+                    DatePlaced = orderRequest.DatePlaced,
+                    Entries = orderRequest.Entries.Select(o =>
+                        new OrderEntry
+                        {
+                            BeverageId = o.BeverageId,
+                            Quantity = o.Quantity
+                        }).ToArray(),
+                };
+
+                var createdOrder = await _repository.InsertAsync(newOrder);
+
+                var response = new OrderResponse(createdOrder.Id, createdOrder.DatePlaced,
+                                createdOrder.Entries
+                                .Select(e => new OrderEntryResponse(e.BeverageId, e.Beverage.Name, e.Beverage.Price, e.Quantity, e.CashbackRefunded)), createdOrder.TotalCashbackRefunded);
+
+                return Ok(response);
+            }
+            catch
+            {
+                //retorna o erro 500 Internal Server Error
+                return StatusCode(500);
+            }
         }
     }
 }

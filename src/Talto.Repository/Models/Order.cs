@@ -25,7 +25,7 @@ namespace Talto.Repository.Models
         public double TotalCashbackRefunded
         {
             get => _totalCashbackRefunded;
-            set
+            internal set
             {
                 if (value < 0)
                     throw new ArgumentOutOfRangeException(nameof(TotalCashbackRefunded));

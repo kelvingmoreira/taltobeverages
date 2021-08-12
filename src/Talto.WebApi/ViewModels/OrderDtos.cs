@@ -18,19 +18,29 @@ namespace Talto.WebApi.ViewModels
     {
         public OrderResponse() { }
 
-        public OrderResponse(int id, DateTime datePlaced, IEnumerable<OrderEntryResponse> orderEntries, double totalCashback)
+        public OrderResponse(int id, DateTime datePlaced, IEnumerable<OrderEntryResponse> orderEntries, double totalCashbackRefunded)
         {
             Id = id;
             DatePlaced = datePlaced;
             Entries = orderEntries;
-            TotalCashback = totalCashback;
+            _totalCashbackRefunded = totalCashbackRefunded;
         }
 
         public int Id { get; set; }
 
         public DateTime DatePlaced { get; set; }
 
-        public double TotalCashback { get; set; }
+        public string DayOfWeek => DatePlaced.DayOfWeek.ToString().ToLower();
+
+        private double _totalCashbackRefunded;
+
+        public double TotalCashbackRefunded => Math.Round(_totalCashbackRefunded, 2);
+
+        private double _subTotal => Entries.Sum(o => o.TotalAmount);
+
+        public double Subtotal => Math.Round(_subTotal, 2);
+
+        public double GrandTotal => Math.Round(_subTotal - _totalCashbackRefunded, 2);
 
         public IEnumerable<OrderEntryResponse> Entries { get; set; }
     }

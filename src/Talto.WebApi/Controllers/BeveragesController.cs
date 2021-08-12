@@ -9,6 +9,9 @@ using Talto.WebApi.ViewModels;
 
 namespace Talto.WebApi.Controllers
 {
+    /// <summary>
+    /// Controller com métodos de interação com o cátalogo das cervejas.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BeveragesController : Controller

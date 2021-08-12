@@ -10,7 +10,7 @@ using Talto.Repository.Sql;
 namespace Talto.Repository.Migrations
 {
     [DbContext(typeof(TaltoContext))]
-    [Migration("20210812134955_Talto-v1")]
+    [Migration("20210812153328_Talto-v1")]
     partial class Taltov1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
