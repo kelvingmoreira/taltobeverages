@@ -10,7 +10,7 @@ using Talto.Repository.Sql;
 namespace Talto.Repository.Migrations
 {
     [DbContext(typeof(TaltoContext))]
-    [Migration("20210810205109_Taltov1")]
+    [Migration("20210812044840_Talto-v1")]
     partial class Taltov1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,6 +67,64 @@ namespace Talto.Repository.Migrations
                     b.ToTable("Cashbacks");
                 });
 
+            modelBuilder.Entity("Talto.Repository.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DatePlaced")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastWriteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("TotalCashback")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Talto.Repository.Models.OrderEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BeverageId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("CashbackAtSale")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastWriteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BeverageId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderEntries");
+                });
+
             modelBuilder.Entity("Talto.Repository.Models.Cashback", b =>
                 {
                     b.HasOne("Talto.Repository.Models.Beverage", "Beverage")
@@ -78,9 +136,33 @@ namespace Talto.Repository.Migrations
                     b.Navigation("Beverage");
                 });
 
+            modelBuilder.Entity("Talto.Repository.Models.OrderEntry", b =>
+                {
+                    b.HasOne("Talto.Repository.Models.Beverage", "Beverage")
+                        .WithMany()
+                        .HasForeignKey("BeverageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Talto.Repository.Models.Order", "Order")
+                        .WithMany("Entries")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Beverage");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Talto.Repository.Models.Beverage", b =>
                 {
                     b.Navigation("Cashbacks");
+                });
+
+            modelBuilder.Entity("Talto.Repository.Models.Order", b =>
+                {
+                    b.Navigation("Entries");
                 });
 #pragma warning restore 612, 618
         }

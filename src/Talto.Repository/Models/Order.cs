@@ -17,6 +17,28 @@ namespace Talto.Repository.Models
         /// </summary>
         public DateTime DatePlaced { get; set; } = DateTime.Now;
 
+        private double _totalCashback;
+
+        /// <summary>
+        /// Obtém ou define o cashback total da venda.
+        /// </summary>
+        public double TotalCashback
+        {
+            get => _totalCashback;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(TotalCashback));
+                else
+                    _totalCashback = value;
+            }
+        }
+
+        /// <summary>
+        /// Obtém ou define os lançamentos da venda.
+        /// </summary>
+        public ICollection<OrderEntry> Entries { get; set; }
+
 
     }
 }

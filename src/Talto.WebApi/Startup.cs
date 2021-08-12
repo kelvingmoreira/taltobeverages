@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Talto.Repository.Sql;
 using Talto.Repository;
+using System.Reflection;
+using System.IO;
 
 namespace Talto.WebApi
 {
@@ -49,6 +51,11 @@ namespace Talto.WebApi
 
             services.AddSwaggerGen(setup => {
                 setup.CustomSchemaIds(x => x.FullName);
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                setup.IncludeXmlComments(xmlPath);
             });
 
             services.AddSwaggerGenNewtonsoftSupport();
