@@ -35,15 +35,15 @@ namespace Talto.WebApi.ViewModels
 
         public int Quantity { get; set; }
 
-        private double _totalAmount => Quantity * _beverageSalePrice;
+        private double _billingAmount => Quantity * _beverageSalePrice;
 
-        public double TotalAmount => Math.Round(_totalAmount, 2);
+        public double BillingAmount => Math.Round(_billingAmount, 2);
 
         private double _cashbackRefunded;
 
         public double CashbackRefunded => Math.Round(_cashbackRefunded, 2);
 
-        private double _netCost => _totalAmount - _cashbackRefunded;
+        private double _netCost => _billingAmount - _cashbackRefunded;
 
         public double NetCost => Math.Round(_netCost, 2);
     }

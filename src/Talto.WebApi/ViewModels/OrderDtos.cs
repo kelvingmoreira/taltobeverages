@@ -30,7 +30,7 @@ namespace Talto.WebApi.ViewModels
 
         public string DayOfWeek => DatePlaced.DayOfWeek.ToString().ToLower();
 
-        private double _subTotal => Entries.Sum(o => o.TotalAmount);
+        private double _subTotal => Entries.Sum(o => o.BillingAmount);
 
         public double Subtotal => Math.Round(_subTotal, 2);
 
