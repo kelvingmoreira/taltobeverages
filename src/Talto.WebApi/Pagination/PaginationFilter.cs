@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Talto.WebApi.Pagination
+﻿namespace Talto.WebApi.Pagination
 {
     //adaptado de https://codewithmukesh.com/blog/pagination-in-aspnet-core-webapi/
     public class PaginationFilter
