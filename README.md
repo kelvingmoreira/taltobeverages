@@ -50,7 +50,7 @@ Exemplo:
 
 O banco de dados foi montado na abordagem "Code First". O schema do banco de dados pode ser construído de duas formas:
 
-* Compilando e executando o projeto ao menos uma vez. O método ```EnsureCreated()``` é utilizado em [Startup.cs](src/Talto.WebApi/Startup.cs) e cria o schema caso ele não exista.
+* Compilando e executando o projeto ao menos uma vez. O método ```EnsureCreated()``` é utilizado em [Startup.cs](src/Talto.WebApi/Startup.cs) e cria o schema caso ele não exista;
 * Executando ```Update-Database``` no Console do Gerenciador de Pacotes com o projeto [Talto.Repository](src/Talto.Repository/Talto.Repository.csproj) selecionado como projeto padrão.
 
 #### Compilação
