@@ -24,7 +24,7 @@ namespace Talto.WebApi.Controllers
         /// </summary>
         /// <param name="pageNumber">O número da página.</param>
         /// <param name="pageSize">O tamanho da página.</param>
-        /// <returns></returns>
+        /// <returns>A lista de cervejas paginada.</returns>
         [HttpGet]
         public async Task<IActionResult> Get( int? pageNumber, int? pageSize)
         {
@@ -58,7 +58,7 @@ namespace Talto.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método GET que retorna a cerveja com o id fornecido.
+        /// Método GET que retorna a cerveja com o ID fornecido.
         /// </summary>
         /// <param name="id">O ID da cerveja a buscar.</param>
         /// <returns>

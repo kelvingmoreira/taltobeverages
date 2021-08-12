@@ -10,43 +10,44 @@ using Talto.Repository.Models.Helpers;
 namespace Talto.Repository.Sql
 {
     /// <summary>
-    /// Implementação dos métodos de interação básicos de <see cref="IBeverageRepository"/>  com o back-end de <see cref="Beverage"/>.
+    /// Implementação dos métodos de interação básicos de <see cref="IOrderRepository"/> com o back-end de <see cref="Order"/>.
     /// </summary>
-    public class SqlBeverageRepository : IBeverageRepository 
+    public class SqlOrderRepository : IOrderRepository
     {
         private readonly TaltoContext _db;
 
-        public SqlBeverageRepository(TaltoContext db) => _db = db;
+        public SqlOrderRepository(TaltoContext db) => _db = db;
 
-        public IQueryable<Beverage> AsQueryable() => _db.Beverages;
+        public IQueryable<Order> AsQueryable() => _db.Orders;
 
-        public async Task<IEnumerable<Beverage>> GetAsync() =>
-            await _db.Beverages
-            .Include(e => e.Cashbacks)
+        public async Task<IEnumerable<Order>> GetAsync() =>
+            await _db.Orders
+            .Include(e => e.Entries)
             .AsNoTracking()
             .ToListAsync();
 
-        public async Task<Beverage> GetAsync(int id) =>
-            await _db.Beverages
-            .Include(e => e.Cashbacks)
+        public async Task<Order> GetAsync(int id) =>
+            await _db.Orders
+            .Include(e => e.Entries)
             .AsNoTracking()
             .FirstOrDefaultAsync(e => e.Id == id);
 
-        public async Task<Beverage> InsertAsync(Beverage entity)
+        public async Task<Order> InsertAsync(Order entity)
         {
             entity.SetTraceValues();
 
-            _db.Entry(entity).State = EntityState.Added;
+            _db.Orders.Add(entity);
 
             await _db.SaveChangesAsync();
+
             return entity;
         }
 
-        public async Task<Beverage> UpdateAsync(Beverage entity)
+        public async Task<Order> UpdateAsync(Order entity)
         {
             entity.SetTraceValues();
 
-            var existing = await _db.Beverages.FirstOrDefaultAsync(_beverage => _beverage.Id == entity.Id);
+            var existing = await _db.Orders.FirstOrDefaultAsync(_order => _order.Id == entity.Id);
 
             if (existing != null)
             {
@@ -55,17 +56,16 @@ namespace Talto.Repository.Sql
 
                 return existing;
             }
-
             else return null;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var tracked = await _db.Beverages.FindAsync(id);
+            var tracked = await _db.Orders.FindAsync(id);
 
             if (null != tracked)
             {
-                _db.Beverages.Remove(tracked);
+                _db.Orders.Remove(tracked);
                 var result = await _db.SaveChangesAsync();
 
                 return result > 0;

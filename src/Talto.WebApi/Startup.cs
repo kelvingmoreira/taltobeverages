@@ -32,6 +32,7 @@ namespace Talto.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //inclusao do DbContext
             services.AddDbContext<TaltoContext>((provider, option) => {
                 var db = option.UseSqlServer(Configuration.GetConnectionString("ReleaseConnection"), o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
                 if (Environment.IsDevelopment())
@@ -44,6 +45,7 @@ namespace Talto.WebApi
 
             //injeção de dependência
             services.AddScoped<IBeverageRepository, SqlBeverageRepository>();
+            services.AddScoped<IOrderRepository, SqlOrderRepository>();
 
             services.AddControllers();
 
