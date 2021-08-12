@@ -47,7 +47,7 @@ namespace Talto.Repository.Models
             get => _quantity;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                     throw new ArgumentOutOfRangeException(nameof(Quantity));
                 else
                     _quantity = value;

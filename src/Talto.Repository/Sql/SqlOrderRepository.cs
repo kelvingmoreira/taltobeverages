@@ -48,12 +48,16 @@ namespace Talto.Repository.Sql
                     .Include(e => e.Cashbacks)
                     .FirstOrDefaultAsync(e => e.Id == entry.BeverageId);
 
+                //define o valor da cerveja na data de lançamento
                 entry.SalePrice = beverage.Price;
+
+                //define o valor do cashback na data de lançamento
                 entry.CashbackRefunded = beverage.Cashbacks.First(o => o.DayOfWeek == entity.DatePlaced.DayOfWeek).Value * entry.SalePrice * entry.Quantity;
 
                 totalCashbackRefunded += entry.CashbackRefunded;
             }
 
+            //define o valor total de cashback da ordem
             entity.TotalCashbackRefunded = totalCashbackRefunded;
 
             _db.Orders.Add(entity);

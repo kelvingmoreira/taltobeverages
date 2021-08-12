@@ -106,22 +106,27 @@ namespace Talto.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Método POST que cria uma nova instância de <see cref="Order"/> no banco de dados.
+        /// </summary>
+        /// <param name="orderRequest">A ordem a criar.</param>
+        /// <returns>A ordem criada.</returns>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrderRequest orderRequest)
         {
             try
             {
                 //Validação básica pra evitar ida ao banco de dados.
-                if (orderRequest.Entries.Count == 0 || orderRequest.Entries.Any(o => o.BeverageId < 0)) return BadRequest();
+                if (orderRequest.Entries.Count == 0 || orderRequest.Entries.Any(o => o.BeverageId <= 0)) return BadRequest();
 
-                Order newOrder = new Order
+                Order newOrder = new()
                 {
                     DatePlaced = orderRequest.DatePlaced,
-                    Entries = orderRequest.Entries.Select(o =>
+                    Entries = orderRequest.Entries.GroupBy(g => g.BeverageId).Select(grp =>
                         new OrderEntry
                         {
-                            BeverageId = o.BeverageId,
-                            Quantity = o.Quantity
+                            BeverageId = grp.Key,
+                            Quantity = grp.Sum(o => o.Quantity)
                         }).ToArray(),
                 };
 

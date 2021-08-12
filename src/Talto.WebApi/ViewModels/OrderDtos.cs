@@ -7,8 +7,6 @@ namespace Talto.WebApi.ViewModels
 {
     public class OrderRequest
     {
-        public int Id { get; set; }
-
         public DateTime DatePlaced { get; set; }
 
         public List<OrderEntryRequest> Entries { get; set; }
@@ -32,13 +30,13 @@ namespace Talto.WebApi.ViewModels
 
         public string DayOfWeek => DatePlaced.DayOfWeek.ToString().ToLower();
 
-        private double _totalCashbackRefunded;
-
-        public double TotalCashbackRefunded => Math.Round(_totalCashbackRefunded, 2);
-
         private double _subTotal => Entries.Sum(o => o.TotalAmount);
 
         public double Subtotal => Math.Round(_subTotal, 2);
+
+        private double _totalCashbackRefunded;
+
+        public double TotalCashbackRefunded => Math.Round(_totalCashbackRefunded, 2);
 
         public double GrandTotal => Math.Round(_subTotal - _totalCashbackRefunded, 2);
 
